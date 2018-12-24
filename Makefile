@@ -26,7 +26,7 @@ ${TARGET}_padded.bin: ${TARGET}.ihx
 
 #disaemble
 disasm: ${TARGET}.bin
-	z80dasm -g 0x0 -1 ${TARGET}.bin
+	z80dasm -g 0x0 -l ${TARGET}.bin
 
 #print machine code
 dump: ${TARGET}.bin
