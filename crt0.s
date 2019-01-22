@@ -2,7 +2,7 @@
 	.globl	_main
 	.area	_HEADER (ABS)
 
-	.org 0x0
+	.org 0x0080
 init:
-	ld		sp,#0x0040
+	ld		sp,#0xFFFF
 	call	_main
