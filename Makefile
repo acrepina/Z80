@@ -1,11 +1,11 @@
 # def var
-MEMSIZE	:= 0x40
+MEMSIZE	:= 0x8000
 TARGET	:= main
 CC		:= sdcc
 AS		:= sdasz80
 CFLAGS	:=
 LFLAGS	:= -Wl -u
-MFLAGS	:= -mz80 --code-loc 0x0006 --data-loc 0x0000 --vc --verbose
+MFLAGS	:= -mz80 --code-loc 0x0100 --data-loc 0x8000 --vc --verbose
 
 all: ${TARGET}.bin ${TARGET}_padded.bin
 
