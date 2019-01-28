@@ -1,14 +1,13 @@
 # def var
-MEMSIZE	:= 0x8000
+MEMSIZE	:= 0xFFFF
 TARGET	:= main
 CC		:= sdcc
 AS		:= sdasz80
 CFLAGS	:=
 LFLAGS	:= -Wl -u
-MFLAGS	:= -mz80 --code-loc 0x0100 --data-loc 0x8000 --vc --verbose
+MFLAGS	:= -mz80 --code-loc 0x8100 --data-loc 0 --vc --verbose
 
 all: ${TARGET}.bin ${TARGET}_padded.bin
-
 #add crt0
 crt0.rel: crt0.s
 	$(AS) -plosgffw crt0.rel crt0.s
@@ -19,7 +18,8 @@ ${TARGET}.ihx: ${TARGET}.c crt0.rel
 
 # ihx to bin
 ${TARGET}.bin: ${TARGET}.ihx
-	makebin -p < ${TARGET}.ihx > ${TARGET}.bin
+#	makebin -p < ${TARGET}.ihx > ${TARGET}.bin
+	objcopy -I ihex --output-target=binary ${TARGET}.ihx  ${TARGET}.bin
 
 ${TARGET}_padded.bin: ${TARGET}.ihx
 	sdobjcopy -Iihex -Obinary --gap-fill 0x00 --pad-to ${MEMSIZE} ${TARGET}.ihx ${TARGET}_padded.bin

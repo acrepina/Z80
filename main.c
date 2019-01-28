@@ -1,6 +1,6 @@
 #include<stdint.h>
 
-uint8_t toto;
+uint32_t toto = 0xDEADBEEF;
 
 void essai(uint8_t val)
 {
